@@ -22,7 +22,11 @@ Create a `.env` file inside `server/`:
 ```env
 MONGO_URI=your_mongodb_uri
 PORT=3000
+KEEP_ALIVE_URL=https://your-render-service.onrender.com
+KEEP_ALIVE_INTERVAL_MS=840000
 ```
+
+`KEEP_ALIVE_URL` should point at the backend base URL or the `/health` endpoint. If you use the base URL, the server will append `/health` automatically. When deployed on Render, you can also rely on `RENDER_EXTERNAL_URL` if it is already present in the environment.
 
 Start the backend:
 
