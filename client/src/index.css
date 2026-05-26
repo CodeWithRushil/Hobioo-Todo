@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-surface: #000000;
+  --color-surface-raised: #0a0a0a;
+  --color-surface-hover: #141414;
+  --color-border: #262626;
+  --color-muted: #737373;
+  --color-accent: #ffffff;
+  --color-accent-hover: #e5e5e5;
+  --color-accent-glow: rgba(255, 255, 255, 0.12);
+  --color-success: #ffffff;
+  --color-danger: #a3a3a3;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply min-h-screen font-sans text-white;
+    background-color: var(--color-surface);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 255, 255, 0.04), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(255, 255, 255, 0.02), transparent);
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.25);
+    color: #000000;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+  }
+
+  .task-enter {
+    animation: task-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .task-exit {
+    animation: task-exit 0.25s ease-in forwards;
+  }
+
+  @keyframes task-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes task-exit {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+  }
+}
