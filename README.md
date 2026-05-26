@@ -1,99 +1,87 @@
 # Hobioo-Todo
+> Author: Rushil Sharma
 
-> Fullstack Todo app (React + Vite frontend, Express + MongoDB backend)
+A simple full-stack Todo app built with React, Vite, Express, and MongoDB.
 
-## Prerequisites
+## Requirements
 
-- Node.js (v16+ recommended)
-- npm (comes with Node.js)
-- A running MongoDB instance (local or hosted) and its connection URI
+- Node.js installed
+- MongoDB connection URI
 
 ## Setup
 
-1. Clone the repository and open the project root.
-2. Install server dependencies:
+### 1. Install Backend
 
 ```bash
 cd server
 npm install
 ```
 
-3. Install client dependencies:
-
-```bash
-cd ../client
-npm install
-```
-
-## Environment Variables
-
-- Server: create a `.env` file inside the `server/` folder with at least:
+Create a `.env` file inside `server/`:
 
 ```env
-MONGO_URI=your_mongo_connection_string
-# optional
+MONGO_URI=your_mongodb_uri
 PORT=3000
 ```
 
-- Client (optional): to change the backend target used by the dev server proxy, create a `.env` file in `client/` with either:
-
-```env
-VITE_BACKEND_URL=http://localhost:3000
-# or (if you want to override the runtime API base)
-VITE_API_URL=http://localhost:3000
-```
-
-Notes:
-- The client defaults to using `/api` and `vite` is configured to proxy `/api` to the backend (see `client/vite.config.js`).
-
-## Running Locally (Development)
-
-1. Start the backend server:
+Start the backend:
 
 ```bash
-cd server
 npm run dev
-# or: npm start
 ```
 
-The server will read `MONGO_URI` from `server/.env` and listen on `PORT` (default: 3000).
+---
 
-2. Start the frontend dev server:
+### 2. Install Frontend
 
 ```bash
 cd client
+npm install
+```
+
+(Optional) Create a `.env` file inside `client/`:
+
+```env
+VITE_BACKEND_URL=http://localhost:3000
+```
+
+Start the frontend:
+
+```bash
 npm run dev
 ```
 
-Open the app in your browser at the address printed by Vite (usually http://localhost:5173).
+Open the URL shown in the terminal (usually `http://localhost:5173`).
 
-API requests from the client are proxied to the backend as `/api/*`.
+---
 
-## Production / Build
-
-To build the client for production:
+## Build for Production
 
 ```bash
 cd client
 npm run build
 ```
 
-Output will be in `client/dist`. Serve those static files with any static server or integrate into a production backend. If you need the client to point at a remote backend in production, set `VITE_BACKEND_URL` (or `VITE_API_URL`) at build time.
-
-## Useful Commands
-
-- Start server: `cd server && npm run dev`
-- Start client: `cd client && npm run dev`
-- Build client: `cd client && npm run build`
-- Lint client: `cd client && npm run lint`
-
-## Troubleshooting
-
-- MongoDB connection errors: verify `MONGO_URI` and that your MongoDB instance is reachable.
-- CORS / proxy issues: by default the client proxies `/api` to the backend. If you change ports or host, update `VITE_BACKEND_URL` in `client/.env`.
+Production files will be generated in `client/dist`.
 
 ---
 
-If you'd like, I can also:
-- Add an npm root-level script that starts both client and server concurrently,
-- Or add a sample `.env.example` in the `server/` folder.
+## Common Commands
+
+```bash
+# Backend
+cd server && npm run dev
+
+# Frontend
+cd client && npm run dev
+
+# Build frontend
+cd client && npm run build
+```
+
+---
+
+## Common Issues
+
+- MongoDB not connecting → Check your `MONGO_URI`
+- API not working → Make sure backend is running on the correct port
